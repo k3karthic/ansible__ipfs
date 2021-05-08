@@ -1,0 +1,5 @@
+s3_bucket: "<bucket name>"
+s3_region: "<region>"
+s3_endpoint: "<namespace>.compat.objectstorage.<region>.oraclecloud.com"
+s3_access_key: "<csk_id>"
+s3_secret_key: "<csk_key>"

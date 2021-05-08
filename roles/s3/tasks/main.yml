@@ -1,0 +1,44 @@
+---
+- name: initialize ipfs
+  ansible.builtin.command:
+    cmd: ipfs init --profile=lowpower
+    creates: ~/.ipfs/config
+
+- name: create s3 datastore_spec
+  ansible.builtin.template:
+    src: datastore_spec.j2
+    dest: ~/.ipfs/datastore_spec
+    mode: '0400'
+
+- name: create s3 config
+  ansible.builtin.template:
+    src: config_s3.j2
+    dest: ~/.ipfs/config_s3
+    mode: '0400'
+
+- name: update ipfs config
+  ansible.builtin.shell:
+    cmd: jq ".Datastore.Spec.mounts[0] = $(cat ~/.ipfs/config_s3)" ~/.ipfs/config > tmp; mv tmp ~/.ipfs/config
+
+- name: create systemd script
+  become: yes
+  ansible.builtin.template:
+    src: ipfs.service
+    dest: /etc/systemd/system/ipfs.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart systemctl
+
+- name: enable ipfs service
+  become: yes
+  ansible.builtin.systemd:
+    name: ipfs
+    state: stopped
+    enabled: yes
+
+- name: start ipfs service
+  become: yes
+  ansible.builtin.systemd:
+    name: ipfs
+    state: started

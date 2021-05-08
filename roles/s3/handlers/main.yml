@@ -1,0 +1,5 @@
+---
+- name: restart systemctl
+  become: yes
+  ansible.builtin.command:
+    cmd: systemctl daemon-reload

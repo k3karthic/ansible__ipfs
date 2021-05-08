@@ -1,0 +1,32 @@
+---
+- name: copy ipfs
+  ansible.builtin.copy:
+    src: resources/ipfs
+    dest: /usr/local/bin/ipfs
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: open tcp 4001
+  ansible.builtin.iptables:
+    action: insert
+    chain: INPUT
+    protocol: tcp
+    destination_port: 4001
+    ctstate: NEW
+    jump: ACCEPT
+    comment: Allow IPFS communication
+
+- name: open udp 4001
+  ansible.builtin.iptables:
+    action: insert
+    chain: INPUT
+    protocol: udp
+    destination_port: 4001
+    ctstate: NEW
+    jump: ACCEPT
+    comment: Allow IPFS UDP communication
+
+- name: save iptables
+  ansible.builtin.shell:
+    cmd: iptables-save > /etc/iptables/rules.v4

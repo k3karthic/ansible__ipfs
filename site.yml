@@ -1,0 +1,21 @@
+---
+- name: update apt
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: update repositories
+      ansible.builtin.apt:
+          cache_valid_time: 86400
+          update_cache: yes
+
+- name: install ipfs
+  hosts: all
+  become: yes
+  roles:
+    - ipfs
+
+- name: configure ipfs
+  hosts: all
+  roles:
+    - s3
