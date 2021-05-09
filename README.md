@@ -1,9 +1,13 @@
 # Ansible - IPFS
 
-The Ansible playbook in this repository installs go-ipfs and configures an Oracle Object Storage bucket as the datastore.
+The Ansible playbook in this repository installs [go-ipfs](https://github.com/ipfs/go-ipfs) and configures an Oracle Object Storage Bucket as the datastore using the [go-ds-s3](https://github.com/ipfs/go-ds-s3) plugin.
 
 The playbook assumes the instance runs in Oracle Cloud using the terraform script below,
 * [https://github.com/k3karthic/terraform__oci-instance-2](https://github.com/k3karthic/terraform__oci-instance-2).
+
+Terraform script to create a Bucket and associated Customer Secret Key can be found at [https://github.com/k3karthic/terraform__oci-storage-s3](https://github.com/k3karthic/terraform__oci-storage-s3).
+
+The playbook expects the ipfs binary to be placed in the `resources` folder. A terraform script to build the appropriate binary can be found at [https://github.com/k3karthic/terraform__ipfs-build-s3](https://github.com/k3karthic/terraform__ipfs-build-s3).
 
 ## Requirements
 
@@ -24,6 +28,7 @@ Public instances are assumed to have a freeform tag `ipfs_service: yes`.
     1. specify the region where you have deployed your server on Oracle Cloud.
     1. Configure the authentication as per the [Oracle Guide](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm#SDK_and_CLI_Configuration_File).
 1. Set username and ssh authentication in `inventory/group_vars/`.
+2. Create `inventory/group_vars/tag_ipfs_service=yes.yml` based on the sample `inventory/group_vars/tag_ipfs_service=yes.yml.sample`.
 
 ## Deployment
 
