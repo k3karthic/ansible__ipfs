@@ -2,7 +2,7 @@
 
 The Ansible playbook in this repository installs go-ipfs and configures an Oracle Object Storage bucket as the datastore.
 
-The playbook assumes the instance runs in Oracle Cloud using the terraform scripts below,
+The playbook assumes the instance runs in Oracle Cloud using the terraform script below,
 * [https://github.com/k3karthic/terraform__oci-instance-2](https://github.com/k3karthic/terraform__oci-instance-2).
 
 ## Requirements
@@ -24,7 +24,6 @@ Public instances are assumed to have a freeform tag `ipfs_service: yes`.
     1. specify the region where you have deployed your server on Oracle Cloud.
     1. Configure the authentication as per the [Oracle Guide](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm#SDK_and_CLI_Configuration_File).
 1. Set username and ssh authentication in `inventory/group_vars/`.
-2. Set username and password for YDNS in `inventory/group_vars/ydns.yml` using the sample `inventory/group_vars/ydns.yml.sample`.
 
 ## Deployment
 
