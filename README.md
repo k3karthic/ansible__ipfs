@@ -13,6 +13,7 @@ The playbook expects the ipfs binary to be placed in the `resources` folder. A t
 
 Install the following Ansible modules before running the playbook,
 ```
+pip install oci
 ansible-galaxy collection install oracle.oci
 ```
 
