@@ -17,11 +17,10 @@ The playbook expects the ipfs binary in the `resources` folder. A Terraform scri
 	* GitHub: [github.com/k3karthic/terraform__ipfs-build-s3](https://github.com/k3karthic/terraform__ipfs-build-s3)
 	* Codeberg: [codeberg.org/k3karthic/terraform__ipfs-build-s3](https://codeberg.org/k3karthic/terraform__ipfs-build-s3)
 
-## Dynamic Inventory
+## Code Mirrors
 
-The Oracle [Ansible Inventory Plugin](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm) populates public Ubuntu instances.
-
-The target Ubuntu instances must have the freeform tag `ipfs_service: yes`.
+* GitHub: [github.com/k3karthic/ansible__ipfs](https://github.com/k3karthic/ansible__ipfs/)
+* Codeberg: [codeberg.org/k3karthic/ansible__ipfs](https://codeberg.org/k3karthic/ansible__ipfs)
 
 ## Requirements
 
@@ -30,6 +29,12 @@ Install the following before running the playbook,
 pip install oci
 ansible-galaxy collection install oracle.oci
 ```
+
+## Dynamic Inventory
+
+The Oracle [Ansible Inventory Plugin](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm) populates public Ubuntu instances.
+
+The target Ubuntu instances must have the freeform tag `ipfs_service: yes`.
 
 ## Playbook Configuration
 
