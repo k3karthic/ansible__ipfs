@@ -2,7 +2,7 @@
 
 The Ansible playbook in this repository installs [go-ipfs](https://github.com/ipfs/go-ipfs) on an Ubuntu 20.04 instance and configures an [Oracle Object Storage](https://www.oracle.com/cloud/storage/object-storage.html) bucket as the datastore using the [go-ds-s3](https://github.com/ipfs/go-ds-s3) plugin.
 
-**Assumption:** The instance runs in Oracle Cloud using the terraform script below,
+**Assumption:** The instance runs in Oracle Cloud using the Terraform script below,
 * terraform__oci-instance-2
 	* GitHub: [github.com/k3karthic/terraform__oci-instance-2](https://github.com/k3karthic/terraform__oci-instance-2).
 	* Codeberg: [codeberg.org/k3karthic/terraform__oci-instance-2](https://codeberg.org/k3karthic/terraform__oci-instance-2).
@@ -12,7 +12,7 @@ The Terraform script below creates a bucket and associated credentials (customer
 	* GitHub: [github.com/k3karthic/terraform__oci-storage-s3](https://github.com/k3karthic/terraform__oci-storage-s3).
 	* Codeberg: [codeberg.org/k3karthic/terraform__oci-storage-s3](https://codeberg.org/k3karthic/terraform__oci-storage-s3).
 
-The playbook expects the ipfs binary to be placed in the `resources` folder. A terraform script to build the appropriate binary can be found at [https://github.com/k3karthic/terraform__ipfs-build-s3](https://github.com/k3karthic/terraform__ipfs-build-s3).
+The playbook expects the ipfs binary to be placed in the `resources` folder. A Terraform script to build the appropriate binary can be found at [https://github.com/k3karthic/terraform__ipfs-build-s3](https://github.com/k3karthic/terraform__ipfs-build-s3).
 
 ## Dynamic Inventory
 
