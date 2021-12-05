@@ -14,7 +14,7 @@ The Terraform script below creates a bucket and associated credentials (customer
 	* GitHub: [github.com/k3karthic/terraform__oci-storage-s3](https://github.com/k3karthic/terraform__oci-storage-s3)
 	* Codeberg: [codeberg.org/k3karthic/terraform__oci-storage-s3](https://codeberg.org/k3karthic/terraform__oci-storage-s3)
 
-The playbook expects the ipfs binary in the `resources` folder. A Terraform script below builds the appropriate binary,
+The playbook expects the ipfs binary in the `resources` folder. The Terraform script below builds the appropriate binary,
 * terraform__ipfs-build-s3
 	* GitHub: [github.com/k3karthic/terraform__ipfs-build-s3](https://github.com/k3karthic/terraform__ipfs-build-s3)
 	* Codeberg: [codeberg.org/k3karthic/terraform__ipfs-build-s3](https://codeberg.org/k3karthic/terraform__ipfs-build-s3)
