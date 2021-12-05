@@ -1,6 +1,8 @@
 # Ansible — IPFS
 
-The Ansible playbook in this repository installs [go-ipfs](https://github.com/ipfs/go-ipfs) on an Ubuntu 20.04 instance. An [Oracle Object Storage](https://www.oracle.com/cloud/storage/object-storage.html) bucket is the datastore using the [go-ds-s3](https://github.com/ipfs/go-ds-s3) plugin.
+The Ansible playbook in this repository installs the following go-ipfs fork on an Ubuntu 20.04 instance. An [Oracle Object Storage](https://www.oracle.com/cloud/storage/object-storage.html) bucket is the datastore using the [go-ds-s3](https://github.com/ipfs/go-ds-s3) plugin.
+* GitHub: [github.com/k3karthic/go-ipfs](https://github.com/k3karthic/go-ipfs)
+* Codeberg: [codeberg.org/k3karthic/bash-updater](https://codeberg.org/k3karthic/bash-updater)
 
 **Assumption:** The instance runs in Oracle Cloud using the Terraform script below,
 * terraform__oci-instance-2
