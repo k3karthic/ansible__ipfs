@@ -42,7 +42,10 @@ The target Ubuntu instances must have the freeform tag `ipfs_service: yes`.
     1. Specify the region where you have deployed your server on Oracle Cloud
     1. Configure the authentication as per the [Oracle Guide](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm#SDK_and_CLI_Configuration_File)
 1. Set username and ssh authentication in `inventory/group_vars/`
-2. Create `inventory/group_vars/tag_ipfs_service=yes.yml`. Use `inventory/group_vars/tag_ipfs_service=yes.yml.sample` as a reference.
+2. Create `inventory/group_vars/tag_ipfs_service=yes.yml`. Use `inventory/group_vars/tag_ipfs_service=yes.yml.sample` as a reference,
+    1. Set the Oracle cloud region
+    2. Set the access key id
+    3. Set the secret key 
 
 ## Deployment
 
