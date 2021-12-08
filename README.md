@@ -38,7 +38,7 @@ The Oracle [Ansible Inventory Plugin](https://docs.oracle.com/en-us/iaas/Content
 
 The target Ubuntu instance must have the freeform tag `ipfs_service: yes`.
 
-## Playbook Configuration
+## Configuration
 
 1. Update `inventory/oracle.oci.yml`,
     1. Specify the region where you have deployed your server on Oracle Cloud. List of regions are at [docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm).
