@@ -41,13 +41,13 @@ The target Ubuntu instance must have the freeform tag `ipfs_service: yes`.
 ## Playbook Configuration
 
 1. Update `inventory/oracle.oci.yml`,
-    1. Specify the region where you have deployed your server on Oracle Cloud
+    1. Specify the region where you have deployed your server on Oracle Cloud. List of regions are at [docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm).
     1. Configure the authentication as per the [Oracle Guide](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm#SDK_and_CLI_Configuration_File)
 1. Set username and ssh authentication in `inventory/group_vars/`
-2. Create `inventory/group_vars/tag_ipfs_service=yes.yml`. Use `inventory/group_vars/tag_ipfs_service=yes.yml.sample` as a reference,
-    1. Set the Oracle cloud region
-    2. Set the access key id
-    3. Set the secret key 
+2. Create `inventory/group_vars/tag_ipfs_service=yes.yml` and set the following details of the bucket. Use `inventory/group_vars/tag_ipfs_service=yes.yml.sample` as a reference,
+    1. Region
+    2. Access Key ID
+    3. Secret Key 
 
 ## Deployment
 
@@ -58,7 +58,7 @@ Run the playbook using the following command,
 
 ## Encryption
 
-Encrypt sensitive files (SSH private keys) before saving them. `.gitignore` must contain the unencrypted file paths.
+Encrypt sensitive files (SSH private keys and `inventory/group_vars/tag_ipfs_service=yes.yml`) before saving them. `.gitignore` must contain the unencrypted file paths.
 
 Use the following command to decrypt the files after cloning the repository,
 
