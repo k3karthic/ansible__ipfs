@@ -1,0 +1,38 @@
+---
+- name: create systemd script
+  become: yes
+  ansible.builtin.template:
+    src: ipfs.service
+    dest: /etc/systemd/system/ipfs.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart systemctl
+
+- name: enable ipfs service
+  become: yes
+  ansible.builtin.systemd:
+    name: ipfs
+    state: stopped
+    enabled: yes
+
+# Bootstrap from https://docs.ipfs.io/how-to/peering-with-content-providers/#content-provider-list
+- name: copy ipfs bootstrap list
+  ansible.builtin.copy:
+    src: ipfs_bootstrap
+    dest: ~/bin/ipfs_bootstrap
+    mode: '0400'
+
+- name: reset ipfs bootstrap list
+  ansible.builtin.shell:
+    cmd: ipfs bootstrap rm --all
+
+- name: set ipfs bootstrap list
+  ansible.builtin.shell:
+    cmd: cat ~/bin/ipfs_bootstrap | ipfs bootstrap add
+
+- name: start ipfs service
+  become: yes
+  ansible.builtin.systemd:
+    name: ipfs
+    state: started

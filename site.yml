@@ -15,7 +15,12 @@
   roles:
     - ipfs
 
-- name: configure ipfs
+- name: configure ipfs datastore
   hosts: all
   roles:
     - s3
+
+- name: start ipfs
+  hosts: all
+  roles:
+    - config
