@@ -1,4 +1,12 @@
 ---
+- name: set LowWater
+  ansible.builtin.shell:
+    cmd: jq ".Swarm.ConnMgr.LowWater = 600" ~/.ipfs/config > tmp; mv tmp ~/.ipfs/config
+
+- name: set HighWater
+  ansible.builtin.shell:
+    cmd: jq ".Swarm.ConnMgr.HighWater = 900" ~/.ipfs/config > tmp; mv tmp ~/.ipfs/config
+
 - name: create systemd script
   become: yes
   ansible.builtin.template:

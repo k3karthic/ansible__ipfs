@@ -16,6 +16,6 @@
     dest: ~/.ipfs/config_s3
     mode: '0400'
 
-- name: update ipfs config
+- name: set s3 in ipfs config
   ansible.builtin.shell:
     cmd: jq ".Datastore.Spec.mounts[0] = $(cat ~/.ipfs/config_s3)" ~/.ipfs/config > tmp; mv tmp ~/.ipfs/config
