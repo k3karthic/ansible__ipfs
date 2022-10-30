@@ -5,8 +5,8 @@ After=network.target
 
 [Service]
 Type=notify
-User={{ ansible_ssh_user }}
-Environment=IPFS_PATH="/home/{{ ansible_ssh_user }}/.ipfs"
+User={{ ansible_user }}
+Environment=IPFS_PATH="/home/{{ ansible_user }}/.ipfs"
 ExecStart=/usr/local/bin/ipfs daemon
 Restart=on-failure
 KillSignal=SIGINT
