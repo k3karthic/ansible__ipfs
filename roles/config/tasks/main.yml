@@ -1,13 +1,13 @@
 ---
-- name: set LowWater
+- name: Set LowWater
   ansible.builtin.shell:
     cmd: jq ".Swarm.ConnMgr.LowWater = 600" ~/.ipfs/config > tmp; mv tmp ~/.ipfs/config
 
-- name: set HighWater
+- name: Set HighWater
   ansible.builtin.shell:
     cmd: jq ".Swarm.ConnMgr.HighWater = 900" ~/.ipfs/config > tmp; mv tmp ~/.ipfs/config
 
-- name: create systemd script
+- name: Create systemd script
   become: yes
   ansible.builtin.template:
     src: ipfs.service
@@ -17,7 +17,7 @@
     mode: '0644'
   notify: restart systemctl
 
-- name: enable ipfs service
+- name: Enable ipfs service
   become: yes
   ansible.builtin.systemd:
     name: ipfs
@@ -25,21 +25,26 @@
     enabled: yes
 
 # Bootstrap from https://docs.ipfs.io/how-to/peering-with-content-providers/#content-provider-list
-- name: copy ipfs bootstrap list
+- name: Copy ipfs bootstrap list
   ansible.builtin.copy:
     src: ipfs_bootstrap
-    dest: ~/bin/ipfs_bootstrap
+    dest: ~/ipfs_bootstrap
     mode: '0400'
 
-- name: reset ipfs bootstrap list
+- name: Reset ipfs bootstrap list
   ansible.builtin.shell:
     cmd: ipfs bootstrap rm --all
 
-- name: set ipfs bootstrap list
+- name: Set ipfs bootstrap list
   ansible.builtin.shell:
-    cmd: cat ~/bin/ipfs_bootstrap | ipfs bootstrap add
+    cmd: cat ~/ipfs_bootstrap | ipfs bootstrap add
 
-- name: start ipfs service
+- name: Cleanup bootstrap
+  ansible.builtin.file:
+    path: ~/ipfs_bootstrap
+    state: absent
+
+- name: Start ipfs service
   become: yes
   ansible.builtin.systemd:
     name: ipfs

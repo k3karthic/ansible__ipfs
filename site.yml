@@ -1,26 +1,29 @@
 ---
-- name: update apt
+- name: Update apt
   hosts: all
   become: yes
 
   tasks:
-    - name: update repositories
+    - name: Update repositories
       ansible.builtin.apt:
           cache_valid_time: 86400
           update_cache: yes
 
-- name: install ipfs
+- name: Install ipfs
   hosts: all
   become: yes
   roles:
     - ipfs
 
-- name: configure ipfs datastore
+- name: Configure ipfs
   hosts: all
-  roles:
-    - s3
+  tasks:
+    - name: Run ipfs init
+      ansible.builtin.command:
+        cmd: ipfs init --profile=lowpower
+        creates: ~/.ipfs/config
 
-- name: start ipfs
+- name: Start ipfs
   hosts: all
   roles:
     - config

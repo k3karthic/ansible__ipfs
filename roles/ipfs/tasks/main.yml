@@ -1,13 +1,35 @@
 ---
-- name: copy ipfs
+- name: Download kubo
+  ansible.builtin.get_url:
+    url: "https://github.com/ipfs/kubo/releases/download/{{ipfs_version}}/kubo_{{ipfs_version}}_linux-amd64.tar.gz"
+    dest: "/tmp/kubo.tar.gz"
+    mode: 0644
+
+- name: Extract kubo
+  ansible.builtin.unarchive:
+    src: "/tmp/kubo.tar.gz"
+    dest: "/tmp/"
+    remote_src: true
+    creates: "/tmp/kubo/"
+
+- name: Move ipfs
   ansible.builtin.copy:
-    src: resources/ipfs
+    src: /tmp/kubo/ipfs
     dest: /usr/local/bin/ipfs
+    remote_src: true
     owner: root
     group: root
     mode: '0755'
 
-- name: open tcp 4001
+- name: Cleanup archive
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "/tmp/kubo"
+    - "/tmp/kubo.tar.gz"
+
+- name: Open tcp 4001
   ansible.builtin.iptables:
     action: insert
     chain: INPUT
@@ -17,7 +39,7 @@
     jump: ACCEPT
     comment: Allow IPFS communication
 
-- name: open udp 4001
+- name: Open udp 4001
   ansible.builtin.iptables:
     action: insert
     chain: INPUT
@@ -27,6 +49,6 @@
     jump: ACCEPT
     comment: Allow IPFS UDP communication
 
-- name: save iptables
+- name: Save iptables
   ansible.builtin.shell:
     cmd: iptables-save | grep -v f2b- > /etc/iptables/rules.v4
