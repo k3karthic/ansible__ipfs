@@ -7,7 +7,7 @@ function decrypt {
     fi
 }
 
-decrypt "tag_ipfs_service=yes.yml"
+decrypt "inventory/group_vars/tag_ipfs_service=yes.yml"
 
 FILES=$(ls ssh/oracle*.gpg)
 for f in $FILES; do
