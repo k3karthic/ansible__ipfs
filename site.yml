@@ -9,6 +9,11 @@
           cache_valid_time: 86400
           update_cache: yes
 
+    - name: Install jq
+      ansible.builtin.apt:
+        name: jq
+        state: present
+
 - name: Install ipfs
   hosts: all
   become: yes
